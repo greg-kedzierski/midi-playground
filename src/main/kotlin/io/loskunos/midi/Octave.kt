@@ -1,25 +1,25 @@
 package io.loskunos.midi
 
 enum class Octave {
-    ZERO,
-    ONE,
-    TWO,
-    THREE,
-    FOUR,
-    FIVE,
-    SIX,
-    SEVEN,
-    EIGHT;
+    SubContra,
+    Contra,
+    Great,
+    Small,
+    OneLine,
+    TwoLine,
+    ThreeLine,
+    FourLine,
+    FiveLine;
 
     companion object {
-        val o0 = ZERO
-        val o1 = ONE
-        val o2 = TWO
-        val o3 = THREE
-        val o4 = FOUR
-        val o5 = FIVE
-        val o6 = SIX
-        val o7 = SEVEN
-        val o8 = EIGHT
+        val o0 = SubContra
+        val o1 = Contra
+        val o2 = Great
+        val o3 = Small
+        val o4 = OneLine
+        val o5 = TwoLine
+        val o6 = ThreeLine
+        val o7 = FourLine
+        val o8 = FiveLine
     }
 }

@@ -17,28 +17,28 @@ fun List<PitchClass>.octave(octave: Octave): List<NotePitch> = map { it.octave(o
 fun PitchClass.octave(octave: Octave): NotePitch = NotePitch(this, octave)
 
 val PitchClass.o0: NotePitch
-    get() = NotePitch(this, ZERO)
+    get() = NotePitch(this, SubContra)
 
 val PitchClass.o1: NotePitch
-    get() = NotePitch(this, ONE)
+    get() = NotePitch(this, Contra)
 
 val PitchClass.o2: NotePitch
-    get() = NotePitch(this, TWO)
+    get() = NotePitch(this, Great)
 
 val PitchClass.o3: NotePitch
-    get() = NotePitch(this, THREE)
+    get() = NotePitch(this, Small)
 
 val PitchClass.o4: NotePitch
-    get() = NotePitch(this, FOUR)
+    get() = NotePitch(this, OneLine)
 
 val PitchClass.o5: NotePitch
-    get() = NotePitch(this, FIVE)
+    get() = NotePitch(this, TwoLine)
 
 val PitchClass.o6: NotePitch
-    get() = NotePitch(this, SIX)
+    get() = NotePitch(this, ThreeLine)
 
 val PitchClass.o7: NotePitch
-    get() = NotePitch(this, SEVEN)
+    get() = NotePitch(this, FourLine)
 
 val PitchClass.o8: NotePitch
-    get() = NotePitch(this, EIGHT)
+    get() = NotePitch(this, FiveLine)
