@@ -1,12 +1,12 @@
 package io.loskunos.midi
 
-import io.loskunos.midi.Note.*
+import io.loskunos.midi.PitchClass.*
 
-fun play(vararg notes: NoteWithOctave): Unit {
+fun play(vararg notes: NotePitch): Unit {
     play(notes.toList())
 }
 
-fun play(notes: List<NoteWithOctave>): Unit {
+fun play(notes: List<NotePitch>): Unit {
     println(notes.joinToString { "$it" })
 }
 
