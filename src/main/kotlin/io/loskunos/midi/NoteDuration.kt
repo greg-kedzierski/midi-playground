@@ -11,10 +11,18 @@ sealed class NoteDuration(val duration: SimplifiedRational) {
     object Eight : NoteDuration(8.reciprocal())
     object Sixteenth : NoteDuration(16.reciprocal())
 
-    class Dotted(originalDuration: NoteDuration) :
-        NoteDuration(originalDuration.duration.let { it + it.half() })
+    class Dotted(private val originalDuration: NoteDuration) :
+        NoteDuration(originalDuration.duration.let { (it + it.half()).normalize() }) {
+        override fun toString(): String = "$originalDuration•"
+    }
 
-    class Custom(duration: SimplifiedRational) : NoteDuration(duration)
+    class Custom(duration: SimplifiedRational) : NoteDuration(duration) {
+        override fun toString(): String = "$duration"
+    }
+
+    fun dotted() = Dotted(this)
+
+    override fun toString(): String = this.javaClass.simpleName
 }
 
 

@@ -36,6 +36,8 @@ data class SimplifiedRational(val numerator: Int, val denominator: Int) {
                 }
 
     override fun hashCode(): Int = normalize().let { 31 * it.numerator + it.denominator }
+
+    override fun toString(): String = "$numerator/$denominator"
 }
 
 infix fun Int.rationalDiv(other: Int) = SimplifiedRational(numerator = this, denominator = other)
