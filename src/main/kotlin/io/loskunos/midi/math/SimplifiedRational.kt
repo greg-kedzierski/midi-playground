@@ -42,9 +42,9 @@ infix fun Int.rationalDiv(other: Int) = SimplifiedRational(numerator = this, den
 fun Int.toRational() = SimplifiedRational(numerator = this, denominator = 1)
 fun Int.reciprocal() = SimplifiedRational(numerator = 1, denominator = this)
 
-fun List<SimplifiedRational>.lcmForDominators() = map { it.denominator }.allLcm()
+fun List<SimplifiedRational>.lcmForDenominators() = map { it.denominator }.allLcm()
 fun List<SimplifiedRational>.toCommonDenominator(): List<SimplifiedRational> =
-    this.lcmForDominators().let { lcm ->
+    this.lcmForDenominators().let { lcm ->
         map { rational ->
             (lcm / rational.denominator)
                  .let { it * rational.numerator rationalDiv lcm }
