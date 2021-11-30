@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import javax.sound.midi.MidiDevice
 import javax.sound.midi.MidiSystem
 
-internal class MidiInfoProviderTest {
+class MidiInfoProviderTest {
     @Test
     fun `## should be very happy`() {
         mockkStatic(MidiSystem::class)
