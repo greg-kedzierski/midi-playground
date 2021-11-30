@@ -1,11 +1,12 @@
-package io.loskunos.midi
+package io.loskunos.midi.math
+
 
 /*
  * It's simplified because e.g. we don't care if denominator is non-zero number or not.
  */
 data class SimplifiedRational(val numerator: Int, val denominator: Int) {
     fun normalize(): SimplifiedRational =
-        findGCD(numerator, denominator)
+        gcd(numerator, denominator)
             .let { gcd ->
                 SimplifiedRational(numerator / gcd, denominator / gcd)
             }
@@ -30,15 +31,11 @@ data class SimplifiedRational(val numerator: Int, val denominator: Int) {
 
     override fun equals(other: Any?): Boolean =
         (other is SimplifiedRational) &&
-                this.normalize().let { normalizedThis ->
-                    other.normalize().let { normalizedOther ->
-                        normalizedThis.numerator == normalizedOther.numerator && normalizedThis.denominator == normalizedOther.denominator
-                    }
+                Pair(this.normalize(), other.normalize()).let { (normalizedThis, normalizedOther) ->
+                    normalizedThis.numerator == normalizedOther.numerator && normalizedThis.denominator == normalizedOther.denominator
                 }
 
     override fun hashCode(): Int = normalize().let { 31 * it.numerator + it.denominator }
-
-    private tailrec fun findGCD(a: Int, b: Int): Int = if (a == 0) b else findGCD(b % a, a)
 }
 
 infix fun Int.rationalDiv(other: Int) = SimplifiedRational(numerator = this, denominator = other)

@@ -1,5 +1,9 @@
 package io.loskunos.midi
 
+import io.loskunos.midi.math.SimplifiedRational
+import io.loskunos.midi.math.reciprocal
+import io.loskunos.midi.math.toRational
+
 sealed class NoteDuration(val duration: SimplifiedRational) {
     object Whole : NoteDuration(1.toRational())
     object Half : NoteDuration(2.reciprocal())
