@@ -41,3 +41,12 @@ data class SimplifiedRational(val numerator: Int, val denominator: Int) {
 infix fun Int.rationalDiv(other: Int) = SimplifiedRational(numerator = this, denominator = other)
 fun Int.toRational() = SimplifiedRational(numerator = this, denominator = 1)
 fun Int.reciprocal() = SimplifiedRational(numerator = 1, denominator = this)
+
+fun List<SimplifiedRational>.lcmForDominators() = map { it.denominator }.allLcm()
+fun List<SimplifiedRational>.toCommonDenominator(): List<SimplifiedRational> =
+    this.lcmForDominators().let { lcm ->
+        map { rational ->
+            (lcm / rational.denominator)
+                 .let { it * rational.numerator rationalDiv lcm }
+        }
+    }

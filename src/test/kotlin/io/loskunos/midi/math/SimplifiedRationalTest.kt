@@ -1,5 +1,6 @@
 package io.loskunos.midi.math
 
+import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.kotest.property.Arb
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.Test
 
 class SimplifiedRationalTest {
     @Test
-    fun `toRational() should create rational number from integer number`() {
+    fun `create valid rational number from integer number`() {
         runBlocking {
             checkAll(Arb.int()) { number ->
                 val rational = number.toRational()
@@ -22,7 +23,7 @@ class SimplifiedRationalTest {
     }
 
     @Test
-    fun `reciprocal() should create reciprocal for a given integer number`() {
+    fun `create reciprocal for a given integer number`() {
         runBlocking {
             checkAll(Arb.int()) { number ->
                 val rational = number.reciprocal()
@@ -46,7 +47,7 @@ class SimplifiedRationalTest {
     }
 
     @Test
-    fun `normalize() should return value of the normalization of rational number`() {
+    fun `normalization of rational number`() {
         (4 rationalDiv 8).normalize() shouldBe (1 rationalDiv 2)
         (10 rationalDiv 4).normalize() shouldBe (5 rationalDiv 2)
         (6 rationalDiv 15).normalize() shouldBe (2 rationalDiv 5)
@@ -66,7 +67,7 @@ class SimplifiedRationalTest {
     }
 
     @Test
-    fun `half() should divide rational number by two`() {
+    fun `half function should divide rational number by two`() {
         runBlocking {
             checkAll(iterations = 20, Arb.int()) { numerator ->
                 checkAll(iterations = 20, Arb.int()) { denominator ->
@@ -89,5 +90,21 @@ class SimplifiedRationalTest {
         number shouldBe (5 rationalDiv 2)
         number shouldBe (30 rationalDiv 12)
         number shouldNotBe (15 rationalDiv 2)
+    }
+
+    @Test
+    fun `converting list of rationals to common denominator should return a list of rationals with common denominator`() {
+        val rationals = listOf(
+            1 rationalDiv 2,
+            2 rationalDiv 3,
+            6 rationalDiv 4,
+
+        )
+
+        rationals.toCommonDenominator() shouldContainExactly listOf(
+            6 rationalDiv 12,
+            8 rationalDiv 12,
+            18 rationalDiv 12
+        )
     }
 }
